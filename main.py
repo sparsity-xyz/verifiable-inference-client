@@ -28,7 +28,8 @@ class ClientRequest:
 
     def verify_attestation(self) -> bool:
         att = requests.get(f"{self.tee_endpoint}/attestation").json()
-        print(att)
+        # print('Verifying attestation document:')
+        # print('attestation document = ', att)
         if att.get("mock"):
             self.att = {
                 "public_key": bytes.fromhex(att["attestation_doc"]["public_key"]),
@@ -39,7 +40,8 @@ class ClientRequest:
             att = att["attestation_doc"]
             self.att = Verifier.decode_attestation_dict(att)
             result = Verifier.verify_attestation(att, "./util/root.pem")
-            print("attestation verification result:", result)
+            # print("attestation verification result:", result)
+            print("Verifying TEE Enclave Identity:", result)
             return result
 
     def chat(self, message: str):
@@ -56,8 +58,11 @@ class ClientRequest:
             "data": self.signer.encrypt(bytes.fromhex(self.public_key), nonce, json.dumps(data).encode()).hex()
         }
         resp = requests.post(f"{self.tee_endpoint}/talk", json=req).json()
-        print("response:", resp)
-        print("message:", resp["data"]["response"])
+
+        print()
+        print('prompt:', message)
+        print("response:", resp["data"]["response"])
+        print("response json:", resp)
         print("verify signature:", self.verify_sig(resp["data"], resp["sig"]))
 
     def verify_sig(self, data, sig) -> bool:
