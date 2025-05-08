@@ -5,10 +5,10 @@ from client import ClientRequest
 
 app = FastAPI()
 
-# 添加 CORS 中间件
+# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 你可以改成指定的域名，比如 ["https://example.com"]
+    allow_origins=["*"],  # You can change this to specific domains, e.g. ["https://example.com"]
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

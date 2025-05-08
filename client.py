@@ -6,7 +6,7 @@ import requests
 from util.signer import Signer
 from util.verifier import Verifier
 
-# 加载 .env 文件
+# Load .env file
 load_dotenv()
 
 class ClientRequest:
@@ -61,10 +61,10 @@ class ClientRequest:
         }
         resp = requests.post(f"{self.tee_endpoint}/talk", json=req).json()
 
-        # 验证签名
+        # Verify signature
         verified = self.verify_sig(resp["data"], resp["sig"])
         
-        # 返回响应，包含签名
+        # Return response with signature
         return {
             "data": resp["data"],
             "signature": resp["sig"],
