@@ -14,7 +14,9 @@ class ClientRequest:
     att: dict
 
     def __init__(self):
-        self.api_key = os.getenv("CHATGPT_API_KEY")
+        self.api_key = os.getenv("PLATFORM_API_KEY")
+        self.platform = os.getenv("PLATFORM")
+        self.model = os.getenv("MODEL")
         if not self.api_key:
             raise Exception('API key is required')
         self.tee_endpoint = os.getenv("TEE_TLS_URL", "http://127.0.0.1:8000")
@@ -48,6 +50,8 @@ class ClientRequest:
         data = {
             "api_key": self.api_key,
             "message": message,
+            "platform": self.platform,
+            "ai_model": self.model,
         }
 
         nonce = os.urandom(32)
