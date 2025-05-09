@@ -65,8 +65,8 @@ class ClientRequest:
 
         print()
         print('prompt:', message)
+        print("response_raw: ", resp)
         print("response:", resp["data"]["response"])
-        print("response json:", resp)
         print("verify signature:", self.verify_sig(resp["data"], resp["sig"]))
 
     def verify_sig(self, data, sig) -> bool:
@@ -79,5 +79,4 @@ class ClientRequest:
 
 if __name__ == '__main__':
     client = ClientRequest()
-    client.chat("Hello")
-    client.chat("What's the date today")
+    client.chat("Bitcoin Price today right now")
