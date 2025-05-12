@@ -66,7 +66,7 @@ class ClientRequest:
         print()
         print('prompt:', message)
         print("response_raw: ", resp)
-        print("response:", resp["data"]["response"])
+        print("final response:", resp["data"][-1]['data']["response"])
         print("verify signature:", self.verify_sig(resp["data"], resp["sig"]))
 
     def verify_sig(self, data, sig) -> bool:
