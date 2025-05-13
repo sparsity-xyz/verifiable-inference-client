@@ -79,4 +79,11 @@ class ClientRequest:
 
 if __name__ == '__main__':
     client = ClientRequest()
+
+    # works with token query agent
     client.chat("Bitcoin Price today right now")
+
+
+    # works with general chat agent
+    # client.chat("Hello")
+    # client.chat("What's the date today")
