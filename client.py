@@ -11,13 +11,13 @@ class ClientRequest:
     api_key: str
     att: dict
 
-    def __init__(self):
+    def __init__(self, tee_endpoint: str = "http://127.0.0.1:8000"):
         self.api_key = os.getenv("PLATFORM_API_KEY")
         self.platform = os.getenv("PLATFORM")
         self.model = os.getenv("MODEL")
         if not self.api_key:
             raise Exception('API key is required')
-        self.tee_endpoint = os.getenv("TEE_TLS_URL", "http://127.0.0.1:8000")
+        self.tee_endpoint = tee_endpoint
         self.signer = Signer()
         self.init_keys()
 
