@@ -63,6 +63,8 @@ class ClientRequest:
         print("raw response: ", resp)
         print("verify signature:", self.verify_sig(resp["data"], resp["sig"]))
 
+        return resp
+
     def verify_sig(self, data, sig) -> bool:
         return Verifier.verify_signature(
             pub_key=bytes.fromhex(self.public_key),
