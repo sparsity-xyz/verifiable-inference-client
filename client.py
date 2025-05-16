@@ -68,6 +68,6 @@ class ClientRequest:
     def verify_sig(self, data, sig) -> bool:
         return Verifier.verify_signature(
             pub_key=bytes.fromhex(self.public_key),
-            msg=json.dumps(data).encode(),
+            msg=data,
             signature=bytes.fromhex(sig),
-        ) 
+        )
