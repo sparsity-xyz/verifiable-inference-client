@@ -27,7 +27,7 @@ class Verifier:
         pub_key = serialization.load_der_public_key(pub_key, backend=default_backend())
         if isinstance(msg, str):
             msg = msg.encode()
-        elif isinstance(msg, dict):
+        elif isinstance(msg, dict) or isinstance(msg, list):
             msg = json.dumps(msg, separators=(',', ':'), sort_keys=True).encode()
         elif not isinstance(msg, bytes):
             raise TypeError("Message must be str, dict or bytes")

@@ -48,7 +48,7 @@ class Signer:
         """
         if isinstance(message, str):
             message = message.encode()
-        elif isinstance(message, dict):
+        elif isinstance(message, dict) or isinstance(message, list):
             message = json.dumps(message, separators=(',', ':'), sort_keys=True).encode()
         elif not isinstance(message, bytes):
             raise TypeError("Message must be str, dict or bytes")
