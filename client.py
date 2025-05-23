@@ -41,14 +41,15 @@ class ClientRequest:
             print("Verifying TEE Enclave Identity:", result)
             return result
 
-    def chat(self, message: str):
+    def chat(self, message: str, meta: dict = None):
         data = {
             "api_key": self.api_key,
             "message": message,
             "platform": self.platform,
             "ai_model": self.model,
+            "meta": meta if meta is not None else {}
         }
-
+        
         nonce = os.urandom(32)
 
         req = {
