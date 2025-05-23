@@ -47,9 +47,11 @@ class ClientRequest:
             "message": message,
             "platform": self.platform,
             "ai_model": self.model,
-            "meta": meta if meta is not None else {}
         }
         
+        if meta is not None:
+            data["meta"] = meta
+
         nonce = os.urandom(32)
 
         req = {
